@@ -1,4 +1,3 @@
-import tempfile
 import urllib.request
 from typing import List, Optional, Tuple
 
@@ -15,6 +14,7 @@ class ImageClassificationModel:
         model_name: Optional[str] = "",
         number_of_results: Optional[int] = 5,
         model: Optional[nn.Module] = None,
+        category_list: Optional[str] = None,
     ):
         self._number_of_results = number_of_results
 
@@ -23,7 +23,10 @@ class ImageClassificationModel:
         else:
             self._model = model
         self._transformation = self._prepare_transformation()
-        self._categories = self._get_categories()
+        if category_list:
+            self._categories = self._get_categories(category_list)
+        else:
+            self._categories = self._get_categories()
 
     @staticmethod
     def _get_model(model_name: str) -> nn.Module:
@@ -36,16 +39,13 @@ class ImageClassificationModel:
         return create_transform(**config)
 
     @staticmethod
-    def _get_categories():
-        with tempfile.NamedTemporaryFile() as named_f:
-            url, filename = (
-                "https://raw.githubusercontent.com/pytorch/hub/"
-                "master/imagenet_classes.txt",
-                named_f.name,
-            )
-            urllib.request.urlretrieve(url, filename)
-            with open(filename, "r") as f:
-                categories = [s.strip() for s in f.readlines()]
+    def _get_categories(
+        category_list="https://raw.githubusercontent.com/"
+        "pytorch/hub/master/imagenet_classes.txt",
+    ):
+        filename, _ = urllib.request.urlretrieve(category_list)
+        with open(filename, "r") as f:
+            categories = [s.strip() for s in f.readlines()]
         return categories
 
     def pre_process(self, img: Image) -> Tensor:

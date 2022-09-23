@@ -1,4 +1,3 @@
-import tempfile
 import urllib
 
 from PIL import Image
@@ -9,20 +8,16 @@ from torchwebio.models.image.imageclassificationmodel import (
 )
 
 
-def get_sample_img(filename):
-    url, filename = (
-        "https://github.com/pytorch/hub/raw/master/images/dog.jpg",
-        filename,
-    )
-    urllib.request.urlretrieve(url, filename)
+def get_sample_img():
+    url = "https://github.com/pytorch/hub/raw/master/images/dog.jpg"
+    filename, _ = urllib.request.urlretrieve(url)
     img = Image.open(filename).convert("RGB")
     return img
 
 
 def infer_on_one_model(model_name="adv_inception_v3"):
-    with tempfile.NamedTemporaryFile() as named_f:
-        my_model = ImageClassificationModel(model_name)
-        results = my_model.process_img(get_sample_img(named_f.name))
+    my_model = ImageClassificationModel(model_name)
+    results = my_model.process_img(get_sample_img())
     assert len(results) == my_model._number_of_results
 
     assert type(results) is list
