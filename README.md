@@ -1,6 +1,7 @@
 [![Coveralls](https://img.shields.io/coveralls/github/prassanna-ravishankar/torchwebio/main.svg)](https://coveralls.io/r/prassanna-ravishankar/torchwebio)
 ![Tests](https://github.com/prassanna-ravishankar/torchwebio/actions/workflows/ci.yml/badge.svg)
-![docs](https://github.com/prassanna-ravishankar/torchwebio/actions/workflows/docs.yml/badge.svg)
+[![Documentation Status](https://readthedocs.org/projects/torchwebio/badge/?version=latest)](https://torchwebio.readthedocs.io/en/latest/?badge=latest)
+
 
 # torchwebio
 
@@ -20,7 +21,7 @@ Imagine you want to test your model against some other sample images that you di
 
 Read the relevant blog post [here](#)
 
-Find the documentation [here](#)
+Find the documentation [here](https://torchwebio.readthedocs.io/en/latest/)
 
 ## How?
 
