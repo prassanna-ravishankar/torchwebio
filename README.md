@@ -1,6 +1,7 @@
 [![Coveralls](https://img.shields.io/coveralls/github/prassanna-ravishankar/torchwebio/main.svg)](https://coveralls.io/r/prassanna-ravishankar/torchwebio)
 ![Tests](https://github.com/prassanna-ravishankar/torchwebio/actions/workflows/ci.yml/badge.svg)
 [![Documentation Status](https://readthedocs.org/projects/torchwebio/badge/?version=latest)](https://torchwebio.readthedocs.io/en/latest/?badge=latest)
+[![PyPI version](https://badge.fury.io/py/torchwebio.svg)](https://badge.fury.io/py/torchwebio)
 
 
 # torchwebio
@@ -48,7 +49,7 @@ Credits to [pywebio](https://www.pyweb.io/) for a super simple framework for pyt
 
 ```python
 import timm
-from torchwebio import webalyzer
+from torchwebio.webalyzer import webalyzer
 
 # Load a TIMM-like model or a regular pytorch model
 model = timm.create_model('tf_efficientnet_b0_apss', pretrained=True)
@@ -66,7 +67,7 @@ webalyzer(model)
 ### Auto-updating application (coming soon!)
 ```python
 import timm
-from torchwebio import webalyzer, updater
+from torchwebio.webalyzer import webalyzer, updater
 
 # Load a TIMM-like model or a regular pytorch model
 model = timm.create_model('tf_efficientnet_b0_apss', pretrained=True)
@@ -85,7 +86,7 @@ for idx, (data, labels) in enumerate(dataloader):
           updater(model)
 ```
 
-
+For more examples, look into the [demo](./demo/) folder
 
 ## Contribute
 Check out [CONTRIBUTING.md](./CONTRIBUTING.md). More to come!
